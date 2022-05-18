@@ -1,0 +1,40 @@
+@mixin ring($width, $color){
+    border-radius: 50%;
+    height: $width;
+    width: $width;
+    background-color: #11ffee00;
+    border: $width/10 solid $color;
+    box-shadow: darken($color, 20%) $width/10 $width/10 5px;
+}
+
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+}
+.ring {
+@include ring(50px, 5px, #f5b042);
+}
+
+h1{
+    margin: 0 10px;
+}
+
+.container2{
+    @extend .container;
+    .theone {
+        @include ring(100px, 10px,#f5b042);
+        margin-top: 1rem;
+    }
+}
+
+.container3 {
+    @extend .container;
+    
+    @for $i from 1 through 6 {
+  div:nth-child(#{$i}) {
+     @include ring(10px+10*$i, 10px,#f5b042);
+  }
+}
+}
